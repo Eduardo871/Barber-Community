@@ -98,7 +98,7 @@ export const removeFromCart = (id, body) => (dispatch) => {
     
      console.log(HOST_BACK + "Body, servicebarberid ..= " + body.serviceBarberId);
 	
- 	return axios.delete("http://localhost:3001/cart/" + id + "?serviceBarberId=" + body).then((response) => {
+ 	return axios.delete(HOST_BACK + "/cart/" + id + "?serviceBarberId=" + body).then((response) => {
           dispatch({ type: "REMOVE_FROM_CART", payload: response.data });
           //removeFromGuestCart(body)
 	});
@@ -123,7 +123,7 @@ export const getCartsByUser = (id) => (dispatch) => {
 };
 
 export const resetUserCart = (id) => (dispatch) => {	
- 	return axios.delete("http://localhost:3001/cart/reset/" + id).then((response) => {
+ 	return axios.delete(HOST_BACK + "/cart/reset/" + id).then((response) => {
           dispatch({ type: "RESET_USER_CART", payload: response.data });
           //removeFromGuestCart(body)
 	});
@@ -134,7 +134,7 @@ export const changeCartState = (id, body) => (dispatch) => {
     
      console.log("Body, servicebarberid ..= " + body);
 	
- 	return axios.put("http://localhost:3001/cart/state/" + id, body).then((response) => {
+ 	return axios.put(HOST_BACK + "/cart/state/" + id, body).then((response) => {
           dispatch({ type: "CHANGE_CART_STATE", payload: response.data });
           //removeFromGuestCart(body)
 	});
@@ -145,7 +145,7 @@ export const changeCartStateMercadoPago = (id, body) => (dispatch) => {
     
      console.log("Body, servicebarberid ..= " + body);
 	
- 	return axios.put("http://localhost:3001/cart/state/payment/" + id, body).then((response) => {
+ 	return axios.put(HOST_BACK + "/cart/state/payment/" + id, body).then((response) => {
           dispatch({ type: "CHANGE_CART_STATE_MERCADO_PAGO", payload: response.data });
           //removeFromGuestCart(body)
 	});
@@ -175,7 +175,7 @@ export const changeOrderStatus = (cartId, body) => (dispatch) => {
     console.log("entra a la action");
     // console.log(body);
    
-    return axios.put("http://localhost:3001/cart/status/" + cartId, body).then((response) => {
+    return axios.put(HOST_BACK + "/cart/status/" + cartId, body).then((response) => {
          dispatch({ type: CHANGE_ORDER_STATUS, payload: response.data });
          //removeFromGuestCart(body)
    });

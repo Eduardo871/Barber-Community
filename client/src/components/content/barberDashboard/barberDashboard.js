@@ -70,7 +70,7 @@ const BarberDashboard = () => {
                         <div>
                             {console.log("hola")}
                             <div >
-                                <div className={`w-full mt-4 justify-center flex`} onClick={handleClick} >
+                                <div className={`w-full overflow-auto mt-4 justify-center flex`} onClick={handleClick} >
                                 {categories.map(c => {
                                     return (
                                         <div>  

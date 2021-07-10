@@ -59,8 +59,18 @@ export const signInBarber = (history, creds)=> (dispatch) => {
 
 export const signInBarberWithGoogle = (history, userData)=> (dispatch) => {
     axios.post(HOST_BACK + "/barbers/login/google", userData) 
-    .then( token => {
+    .then(async token => {
         localStorage.setItem('barberToken', JSON.stringify(token.data.token))
+        localStorage.setItem('clientToken', JSON.stringify(token.data.token))
+        let localStorageCart = JSON.parse(localStorage.getItem('cart'))
+        
+        if (localStorageCart) {
+            let user = await jwtDecode(token.data.token)
+            
+            localStorageCart.items?.map((i) => {
+                return dispatch(addToCart(user.id, i))
+            })
+        }  
 
         dispatch({type: SIGN_IN_BARBER_GOOGLE, token: token.data.token})
         history.push("/barbers/dashboard")
@@ -136,8 +146,18 @@ export const signInClient = (creds, history) => (dispatch) => {
 
 export const signInClientWithGoogle = (history, userData)=> (dispatch) => {
     axios.post(HOST_BACK + "/clients/login/google", userData) 
-    .then( token => {
+    .then(async token => {
         localStorage.setItem('clientToken', JSON.stringify(token.data.token))
+        localStorage.setItem('clientToken', JSON.stringify(token.data.token))
+        let localStorageCart = JSON.parse(localStorage.getItem('cart'))
+        
+        if (localStorageCart) {
+            let user = await jwtDecode(token.data.token)
+            
+            localStorageCart.items?.map((i) => {
+                return dispatch(addToCart(user.id, i))
+            })
+        }  
 
         dispatch({type: SIGN_IN_BARBER_GOOGLE, token: token.data.token})
         history.push("/clients/dashboard")

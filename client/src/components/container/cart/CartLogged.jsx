@@ -37,13 +37,13 @@ export const CartLogged = () => {
 
   const barberApp = useSelector(state => state.cart.barberAppointments)
 
-  const filterButtonStyle ="mr-4 bg-secondary hover:bg-primary text-white mb-4 px-2";
-	const filterSelected = "mr-4 bg-primary hover:bg-primary text-white mb-4 px-2";
-  
+  const filterButtonStyle = "mr-4 bg-secondary hover:bg-primary text-white mb-4 px-2";
+  const filterSelected = "mr-4 bg-primary hover:bg-primary text-white mb-4 px-2";
+
   let [fecha, setFecha] = useState({ fecha: "" })
   const [boton, setBoton] = useState({
-		filters: "",
-	});
+    filters: "",
+  });
   function onchange(args) {
     setAppointment({ ...appointment, date: `${args._d}` })
   }
@@ -88,7 +88,7 @@ export const CartLogged = () => {
   }
 
   function checkOut() {
-    if(appointment.date === "" || appointment.time === "") {
+    if (appointment.date === "" || appointment.time === "") {
       Swal.fire({
         title: "Please choose a date and an hour to confirm your appointment",
         icon: 'warning',
@@ -126,17 +126,17 @@ export const CartLogged = () => {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-          dispatch(removeFromCart(token.id, id)).then(() =>
+        dispatch(removeFromCart(token.id, id)).then(() =>
           dispatch(getActiveCartFromUserId(token.id)))
-          Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-          )
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
       }
-  })
+    })
   }
 
   return (
@@ -187,12 +187,12 @@ export const CartLogged = () => {
                 <div>
 
                   {slotsCopy && slotsCopy.length > 0 ?
-                    slotsCopy.map(e => <button value={e} onClick={(event) => onChange(event)} 
-                    className={
-                      boton.filters === e
-                        ? filterSelected
-                        : filterButtonStyle
-                    }>{e}</button>) : "Looks like this day is unavailable!"}
+                    slotsCopy.map(e => <button value={e} onClick={(event) => onChange(event)}
+                      className={
+                        boton.filters === e
+                          ? filterSelected
+                          : filterButtonStyle
+                      }>{e}</button>) : "Looks like this day is unavailable!"}
                 </div>
               </div>
             </div>
