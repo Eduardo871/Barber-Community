@@ -112,7 +112,7 @@ function BarberDetail(props) {
 				{!resp ? (
 					<div class="loader"></div>
 				) : (
-					<div class="container p-5">
+					<div class="container p-5 ">
 						<Link to="/catalog">
 							<button class="bg-secondary hover:bg-primary border-b-2 text-white py-1 
 							font-bold p-3 mt-6 ml-3">
@@ -122,7 +122,7 @@ function BarberDetail(props) {
 							<div class="md:flex no-wrap md:-mx-2 pt-8 pb-32">
 								<div class="w-full md:w-3/12 md:mx-2">
 								{/* <!-- Profile Card --> */}
-								<div class="bg-white p-3">
+								<div class="bg-white p-3 w-72">
 
 									{/* MAIN FIELDS  */}
 									<div class="">
@@ -206,7 +206,7 @@ function BarberDetail(props) {
 					{/* <h2 className="font-bold text-2xl mb-4">Location</h2> */}
 					<div class="mapouter ">
 						<div class="gmap_canvas">
-							<iframe className="w-full h-96" id="gmap_canvas" src={`https://maps.google.com/maps?q=${address}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+							<iframe className="w-full h-auto" id="gmap_canvas" src={`https://maps.google.com/maps?q=${address}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
 								frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
 							</iframe>
 						</div>
@@ -235,14 +235,14 @@ function BarberDetail(props) {
 									d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
 									</svg>
 								</span>
-								<span class="font-bold text-xl">Availability</span>
+								<span class="font-bold text-xl">Services</span>
 							</div>
 							<div>
 										
-							<div class="w-full  mx-auto">
-							<div>
-							<div>
-							<div className={`w-full justify-center flex`} onClick={handleClick} >
+							<div class="w-full h-96 mx-auto">
+							<div className="">
+							<div className="">
+							<div className={`w-30 flex gap-4 overflow-auto`} onClick={handleClick} >
 							{categories.map(c => {
 								return (
 									<div>
@@ -262,8 +262,10 @@ function BarberDetail(props) {
 								)
 							})}
 						</div>
-					</div>
+												</div>
+												<div className="flex justify-center ml-4">
 					<BarberDetailServices filters={boton.filters} />
+												</div>
 					</div>
 					</div>
 											

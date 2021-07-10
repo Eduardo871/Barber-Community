@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToService, getBarbers, removeFromService } from '../../../../redux/action/barbers';
 import { getServices, postBarberService } from '../../../../redux/action/services';
 import jwtDecode from "jwt-decode"
+import Swal from 'sweetalert2';
 
 const BarberServicesData = ({ filters }) => {
     const dispatch = useDispatch();
@@ -78,7 +79,12 @@ const BarberServicesData = ({ filters }) => {
             image: [image]
         }
         // console.log("BarberService.  = " + barbers.id);
-        dispatch(postBarberService(barberService))
+        Swal.fire(
+            "Service Posted",
+            "Good Job!",
+            'success'
+        ).then(() =>
+            dispatch(postBarberService(barberService)))
         //window.location.href = 'http://localhost:3000/barbers/dashboard';
     }
 
@@ -94,17 +100,17 @@ const BarberServicesData = ({ filters }) => {
         );
     };
 
-    const filtered = services.filter(n => n.Categories ? n.Categories.name === filters : 0)
+    const filtered = services && services.filter(n => n.Categories ? n.Categories.name === filters : 0)
 
     return (
         <div>
             <div>
-                <div className="grid overflow-auto h-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+                <div className="grid overflow-auto h-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
                     {filtered &&
                         filtered.map((n) => (
-                            <div key={n.id} className="text-center m-8 border rounded-xl pb-1 w-4/5 shadow-md">
+                            <div key={n.id} className="text-center m-8 rounded-xl pb-1 w-4/5 shadow-md">
                                 <img
-                                    className="rounded-lg h-30 w-full"
+                                    className="rounded-lg h-48 w-full"
                                     src={n.image[0]}
                                     alt=""
                                     width="200px"
@@ -159,7 +165,7 @@ const BarberServicesData = ({ filters }) => {
             </div>
 
             <div className="h-96 flex justify-center mb-10">
-                {data && data.name ? <div className="text-center m-8 border rounded-xl pb-1 h-96 shadow-md">
+                {data && data.name ? <div className="text-center m-8 rounded-xl pb-1 h-96 shadow-md">
                     <img
                         className="rounded-lg h-30"
                         src={data.image}

@@ -101,64 +101,65 @@ const Register = () => {
 
 	const dispatch = useDispatch();
 	const handleSubmit = (e) => {
-		if(!barber.name || !barber.lastname ||
+		if (!barber.name || !barber.lastname ||
 			!barber.bio || !barber.resume ||
-			 !barber.email || !barber.password || !barber.confirmedPassword ||
-			  !barber.alias || !barber.address || !barber.mobile || !barber.number
-			  || !barber.city || !barber.state || !barber.country) {
-			   Swal.fire({
-				 title: 'Please complete all the camps',
-				 showClass: {
-				   popup: 'animate__animated animate__fadeInDown'
-				 },
-				 hideClass: {
-				   popup: 'animate__animated animate__fadeOutUp'
-				 }
-			   })
-		 } else if (barber.password !== barber.confirmedPassword) {
-			   Swal.fire({
-				 title: 'password and confirm password must be the same',
-				 showClass: {
-				   popup: 'animate__animated animate__fadeInDown'
-				 },
-				 hideClass: {
-				   popup: 'animate__animated animate__fadeOutUp'
-				 }
-			   })
-		 } else {
-		const barberSend = {
-			barber: {
-				status: true,
-				rating: 0,
-				name: barber.name,
-				lastname: barber.lastname,
-				bio: barber.bio,
-				resume: barber.resume,
-				email: barber.email,
-				password: barber.confirmedPassword,
-				alias: barber.alias,
-				address: barber.address,
-				number: barber.number,
-				city: barber.city,
-				state: barber.state,
-				country: barber.country,
-				mobile: barber.mobile,
-				image: barberImg,
-				type: barber.type,
-			},
-		};
+			!barber.email || !barber.password || !barber.confirmedPassword ||
+			!barber.alias || !barber.address || !barber.mobile || !barber.number
+			|| !barber.city || !barber.state || !barber.country) {
+			Swal.fire({
+				title: 'Please complete all the camps',
+				showClass: {
+					popup: 'animate__animated animate__fadeInDown'
+				},
+				hideClass: {
+					popup: 'animate__animated animate__fadeOutUp'
+				}
+			})
+		} else if (barber.password !== barber.confirmedPassword) {
+			Swal.fire({
+				title: 'password and confirm password must be the same',
+				showClass: {
+					popup: 'animate__animated animate__fadeInDown'
+				},
+				hideClass: {
+					popup: 'animate__animated animate__fadeOutUp'
+				}
+			})
+		} else {
+			const barberSend = {
+				barber: {
+					status: true,
+					rating: 0,
+					name: barber.name,
+					lastname: barber.lastname,
+					bio: barber.bio,
+					resume: barber.resume,
+					email: barber.email,
+					password: barber.confirmedPassword,
+					alias: barber.alias,
+					address: barber.address,
+					number: barber.number,
+					city: barber.city,
+					state: barber.state,
+					country: barber.country,
+					mobile: barber.mobile,
+					image: barberImg,
+					type: barber.type,
+				},
+			};
 
-		dispatch(signUpBarber(barberSend));
-		Swal.fire({
-			title: 'Register Sucessfull',
-			icon: 'success',
-			confirmButtonColor: '#3085d6',
-			confirmButtonText: 'Ok'
-		}).then((result) => {
-			if (result.isConfirmed) {
-				window.location.href = "http://localhost:3000/loginBarbers";
-			}
-		})}
+			dispatch(signUpBarber(barberSend));
+			Swal.fire({
+				title: 'Register Sucessfull',
+				icon: 'success',
+				confirmButtonColor: '#3085d6',
+				confirmButtonText: 'Ok'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = "https://barberscommunity-g8.netlify.app/loginBarbers";
+				}
+			})
+		}
 	};
 
 
